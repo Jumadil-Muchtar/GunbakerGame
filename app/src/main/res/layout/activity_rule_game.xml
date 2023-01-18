@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center_vertical"
+    android:padding="20dp"
+    >
+
+    <!--    <HorizontalScrollView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="center_vertical"-->
+    <!--        >-->
+
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:orientation="horizontal" >-->
+    <!--            <Button-->
+    <!--                android:layout_width="300dp"-->
+    <!--                android:layout_height="300dp"-->
+    <!--                android:text="3"-->
+    <!--                android:color="@drawable/custom_edittext"-->
+    <!--                android:layout_marginHorizontal="40dp"-->
+    <!--                />-->
+    <!--            <Button-->
+    <!--                android:layout_width="300dp"-->
+    <!--                android:layout_height="300dp"-->
+    <!--                android:text="5"-->
+    <!--                android:background="@drawable/custom_card"-->
+    <!--                android:layout_marginHorizontal="40dp"-->
+    <!--                />-->
+    <!--            <Button-->
+    <!--                android:layout_width="300dp"-->
+    <!--                android:layout_height="300dp"-->
+    <!--                android:text="7"-->
+    <!--                android:background="@drawable/custom_card"-->
+    <!--                android:layout_marginHorizontal="40dp"-->
+    <!--                />-->
+
+
+
+    <!--        </LinearLayout>-->
+
+    <!--    </HorizontalScrollView>-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rule1"
+        android:textSize="17sp"
+        android:layout_marginVertical="10dp"
+        android:layout_marginLeft="5dp"
+        android:textColor="@color/black"
+        />
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1 times" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3 times" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="5 times" />
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="10 times" />
+        <RadioButton
+            android:id="@+id/radioButton5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="50 times" />
+    </RadioGroup>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/start_now"
+        />
+
+</LinearLayout>
