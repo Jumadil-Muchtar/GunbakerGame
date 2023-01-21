@@ -2,9 +2,6 @@ package com.example.gunbakergame
 
 class Authority(objParams: User){
     private var objUser: User = objParams
-    public var nameOfUser: String = objUser.getName()
-    public var passwordOfUser: String = objUser.getPassword()
-    public var bestScoreOfUser: Int = objUser.getBestScore()
     public var indexOfUser: Int = 0
 
 
@@ -27,21 +24,4 @@ class Authority(objParams: User){
         }
         return false
     }
-//    public fun getAccount(): User{
-//        return this.obj
-//    }
-//    public fun register(objUser: User, users: MutableSet<User>): Boolean{
-//        if (users.contains(objUser)){
-//            return false
-//        }else{
-//            users.add(objUser)
-//            return true
-//        }
-//    }
-//    public fun isAccountLogged(objUser: User): Boolean{
-//        if(objUser.getName().equals(this.obj.getName())){
-//            return true
-//        }
-//        return false
-//    }
 }

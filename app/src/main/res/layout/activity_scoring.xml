@@ -6,6 +6,7 @@
     android:layout_gravity="center_vertical">
 
     <TextView
+        android:id="@+id/matchTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -13,13 +14,12 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_marginVertical="15dp"/>
-
-
     <LinearLayout
+        android:id="@+id/activityScoringLinearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="30dp">
+        android:layout_marginBottom="15dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -78,8 +78,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/resultGameMessage1"
-        android:textSize="18sp"
-        android:textStyle="bold"/>
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginVertical="15dp"/>
     <ImageView
         android:id="@+id/resultImageView"
         android:layout_width="wrap_content"

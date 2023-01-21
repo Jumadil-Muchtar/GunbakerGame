@@ -19,7 +19,9 @@ class RegistrationActivity : AppCompatActivity() {
 
     var listNameUser: ArrayList<String> = arrayListOf<String>("Andi", "Budi","Cino")
     var listPasswordUser: ArrayList<String> = arrayListOf<String>("123", "123", "123")
-    var listBestcoreUser: ArrayList<Int> = arrayListOf<Int>(0, 0, 0)
+    var listBestScoreEasyLevelOfUser: ArrayList<Int> = arrayListOf<Int>(0, 0, 0)
+    var listBestScoreMediumLevelOfUser: ArrayList<Int> = arrayListOf<Int>(0, 0, 0)
+    var listBestScoreHardLevelOfUser: ArrayList<Int> = arrayListOf<Int>(0, 0, 0)
 
     fun initComponents(){
         nameUserEditText = findViewById(R.id.editTextNameUser)
@@ -38,7 +40,7 @@ class RegistrationActivity : AppCompatActivity() {
 
             if (password.equals(cpassword)) {
                 Log.i("intent", "Password is confirmed")
-                val user1 = User(name, password, 0)
+                val user1 = User(name, password, arrayListOf(0,0,0))
                 Log.i("intent", "User is maked")
                 val auth = Authority(user1)
                 Log.i("intent", "Authority is maked")
@@ -50,13 +52,17 @@ class RegistrationActivity : AppCompatActivity() {
                 }else {
                     this.listNameUser.add(this.nameUserEditText.text.toString())
                     this.listPasswordUser.add(this.passwordUserEditText.text.toString())
-                    this.listBestcoreUser.add(0)
+                    this.listBestScoreEasyLevelOfUser.add(0)
+                    this.listBestScoreMediumLevelOfUser.add(0)
+                    this.listBestScoreHardLevelOfUser.add(0)
                     Toast.makeText(this, "Registration is succeeded, please login now", Toast.LENGTH_SHORT).show()
                     Log.i("intent", "Registration is succeeded, please login now")
                     Intent(this, LoginActivity::class.java).also{
                         it.putExtra("listNameUser", this.listNameUser)
                         it.putExtra("listPasswordUser", this.listPasswordUser)
-                        it.putExtra("listBestScoreUser", this.listBestcoreUser)
+                        it.putExtra("listBestScoreEasyLevelOfUser", this.listBestScoreEasyLevelOfUser)
+                        it.putExtra("listBestScoreMediumLevelOfUser", this.listBestScoreMediumLevelOfUser)
+                        it.putExtra("listBestScoreHardLevelOfUser", this.listBestScoreHardLevelOfUser)
                         startActivity(it)
                     }
                 }
@@ -70,20 +76,42 @@ class RegistrationActivity : AppCompatActivity() {
             Intent(this, LoginActivity::class.java).also{
                 it.putExtra("listNameUser", this.listNameUser)
                 it.putExtra("listPasswordUser", this.listPasswordUser)
-                it.putExtra("listBestScoreUser", this.listBestcoreUser)
+                it.putExtra("listBestScoreEasyLevelOfUser", this.listBestScoreEasyLevelOfUser)
+                it.putExtra("listBestScoreMediumLevelOfUser", this.listBestScoreMediumLevelOfUser)
+                it.putExtra("listBestScoreHardLevelOfUser", this.listBestScoreHardLevelOfUser)
                 startActivity(it)
             }
         }
+    }
+    fun getIntentAll(){
+        this.listNameUser = intent.getStringArrayListExtra("listNameUser") as ArrayList<String>
+        this.listPasswordUser = intent.getStringArrayListExtra("listPasswordUser") as ArrayList<String>
+        this.listBestScoreEasyLevelOfUser = intent.getIntegerArrayListExtra("listBestScoreEasyLevelOfUser") as ArrayList<Int>
+        this.listBestScoreMediumLevelOfUser = intent.getIntegerArrayListExtra("listBestScoreMediumLevelOfUser") as ArrayList<Int>
+        this.listBestScoreHardLevelOfUser = intent.getIntegerArrayListExtra("listBestScoreHardLevelOfUser") as ArrayList<Int>
+
+        for (i in this.listNameUser){
+            Log.i("user", "User yang dikirim ke registration Activity : $i")
+        }
+        for (j in this.listPasswordUser){
+            Log.i("user", "Password User yang dikirim ke registration Activity : $j")
+        }
+        for (k in this.listBestScoreEasyLevelOfUser){
+            Log.i("user", "Best Score Easy Level User yang dikirim ke registration Activity : $k")
+        }
+        for (l in this.listBestScoreMediumLevelOfUser){
+            Log.i("user", "Best Score Medium Level User yang dikirim ke registration Activity : $l")
+        }
+        for (m in this.listBestScoreHardLevelOfUser){
+            Log.i("user", "Best Score Hard Level User yang dikirim ke registration Activity : $m")
+        }
+
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
         initComponents()
-
-        this.listNameUser = intent.getStringArrayListExtra("listNameUser") as ArrayList<String>
-        this.listPasswordUser = intent.getStringArrayListExtra("listPasswordUser") as ArrayList<String>
-        this.listBestcoreUser = intent.getIntegerArrayListExtra("listBestScoreUser") as ArrayList<Int>
-
+        getIntentAll()
         initListeners()
     }
 }

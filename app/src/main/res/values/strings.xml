@@ -39,7 +39,7 @@
     <string name="resultGameMessage2">THE MATCH IS %1$s !!</string>
 
     <!-- Rule Game Activity  -->
-    <string name="rule1">Select the number of game rounds</string>
+    <string name="rule1">Select the level of game</string>
     <string name="start_now">Start Now</string>
 
 

@@ -16,12 +16,11 @@ class MainActivity : AppCompatActivity() {
     lateinit var greetingUserTextView: TextView
     var nameOfUserLogged : String = ""
     var indexOfUserLogged: Int = 0
-//    var listNameOfUser = arrayListOf<String>()
-//    var listPasswordOfUser = arrayListOf<String>()
-//    var listBestScoreOfUser = arrayListOf<Int>()
     var listNameOfUser: ArrayList<String> = arrayListOf<String>("Andi", "Budi","Cino")
     var listPasswordOfUser: ArrayList<String> = arrayListOf<String>("123", "123", "123")
-    var listBestScoreOfUser: ArrayList<Int> = arrayListOf<Int>(0, 0, 0)
+    var listBestScoreEasyLevelOfUser: ArrayList<Int> = arrayListOf<Int>(0, 0, 0)
+    var listBestScoreMediumLevelOfUser: ArrayList<Int> = arrayListOf<Int>(0, 0, 0)
+    var listBestScoreHardLevelOfUser: ArrayList<Int> = arrayListOf<Int>(0, 0, 0)
 
 
     private fun initComponents(){
@@ -31,13 +30,15 @@ class MainActivity : AppCompatActivity() {
     }
     private fun initListeners(){
         playNowButton.setOnClickListener{
-            Intent(this, ChoosingActivity::class.java).also{
+            Intent(this, RuleGameActivity::class.java).also{
                 it.putExtra("name", this.nameOfUserLogged)
                 Log.i("UserLogin", "User di Main Activity : ${this.nameOfUserLogged}")
                 it.putExtra("index", this.indexOfUserLogged)
                 it.putExtra("listNameUser", this.listNameOfUser )
                 it.putExtra("listPasswordUser", this.listPasswordOfUser)
-                it.putExtra("listBestScoreUser", this.listBestScoreOfUser)
+                it.putExtra("listBestScoreEasyLevelOfUser", this.listBestScoreEasyLevelOfUser)
+                it.putExtra("listBestScoreMediumLevelOfUser", this.listBestScoreMediumLevelOfUser)
+                it.putExtra("listBestScoreHardLevelOfUser", this.listBestScoreHardLevelOfUser)
                 startActivity(it)
             }
         }
@@ -45,10 +46,37 @@ class MainActivity : AppCompatActivity() {
             Intent(this, LoginActivity::class.java).also {
                 it.putExtra("listNameUser", this.listNameOfUser )
                 it.putExtra("listPasswordUser", this.listPasswordOfUser)
-                it.putExtra("listBestScoreUser", this.listBestScoreOfUser)
+                it.putExtra("listBestScoreEasyLevelOfUser", this.listBestScoreEasyLevelOfUser)
+                it.putExtra("listBestScoreMediumLevelOfUser", this.listBestScoreMediumLevelOfUser)
+                it.putExtra("listBestScoreHardLevelOfUser", this.listBestScoreHardLevelOfUser)
                 startActivity(it)
 
             }
+        }
+    }
+    fun getIntentAll(){
+        this.nameOfUserLogged = intent.getStringExtra("name").toString()
+        this.indexOfUserLogged = intent.getIntExtra("index", 0).toInt()
+        this.listNameOfUser = intent.getStringArrayListExtra("listNameUser") as ArrayList<String>
+        this.listPasswordOfUser = intent.getStringArrayListExtra("listPasswordUser") as ArrayList<String>
+        this.listBestScoreEasyLevelOfUser = intent.getIntegerArrayListExtra("listBestScoreEasyLevelOfUser") as ArrayList<Int>
+        this.listBestScoreMediumLevelOfUser = intent.getIntegerArrayListExtra("listBestScoreMediumLevelOfUser") as ArrayList<Int>
+        this.listBestScoreHardLevelOfUser = intent.getIntegerArrayListExtra("listBestScoreHardLevelOfUser") as ArrayList<Int>
+
+        for (i in this.listNameOfUser){
+            Log.i("user", "User yang dikirim dari login Activity : $i")
+        }
+        for (j in this.listPasswordOfUser){
+            Log.i("user", "Password User yang dikirim dari login Activity : $j")
+        }
+        for (k in this.listBestScoreEasyLevelOfUser){
+            Log.i("user", "Best Score Easy Level User yang dikirim ke Main Activity : $k")
+        }
+        for (l in this.listBestScoreMediumLevelOfUser){
+            Log.i("user", "Best Score Medium Level User yang dikirim ke Main Activity : $l")
+        }
+        for (m in this.listBestScoreHardLevelOfUser){
+            Log.i("user", "Best Score Hard Level User yang dikirim ke Main Activity : $m")
         }
     }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,21 +86,7 @@ class MainActivity : AppCompatActivity() {
         isLogin = intent.getBooleanExtra("isLogin", false)
 
         if(isLogin){
-            this.nameOfUserLogged = intent.getStringExtra("name").toString()
-            this.indexOfUserLogged = intent.getIntExtra("index", 0).toInt()
-            this.listNameOfUser = intent.getStringArrayListExtra("listNameUser") as ArrayList<String>
-            this.listPasswordOfUser = intent.getStringArrayListExtra("listPasswordUser") as ArrayList<String>
-            this.listBestScoreOfUser = intent.getIntegerArrayListExtra("listBestScoreUser") as ArrayList<Int>
-
-            for (i in this.listNameOfUser){
-                Log.i("intent", "User yang dikirim dari login Activity : $i")
-            }
-            for (j in this.listPasswordOfUser){
-                Log.i("intent", "Password User yang dikirim dari login Activity : $j")
-            }
-            for (k in this.listBestScoreOfUser){
-                Log.i("intent", "Best Score User yang dikirim dari login Activity : $k")
-            }
+            getIntentAll()
             initListeners()
             greetingUserTextView.text = resources.getString(R.string.hiUser, this.nameOfUserLogged)
         }else{
@@ -80,10 +94,11 @@ class MainActivity : AppCompatActivity() {
             Intent(this, LoginActivity::class.java).also {
                 it.putExtra("listNameUser", this.listNameOfUser )
                 it.putExtra("listPasswordUser", this.listPasswordOfUser)
-                it.putExtra("listBestScoreUser", this.listBestScoreOfUser)
+                it.putExtra("listBestScoreEasyLevelOfUser", this.listBestScoreEasyLevelOfUser)
+                it.putExtra("listBestScoreMediumLevelOfUser", this.listBestScoreMediumLevelOfUser)
+                it.putExtra("listBestScoreHardLevelOfUser", this.listBestScoreHardLevelOfUser)
                 startActivity(it)
             }
-
         }
     }
 }

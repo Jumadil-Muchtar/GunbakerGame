@@ -2,13 +2,20 @@ package com.example.gunbakergame
 
 import kotlin.random.Random
 
-class Game(optionFinger: String, scoreParams: Int, userObj: User) {
+class Game(optionFinger: String, levelParams: String, scoreParams: Int, userObj: User, countParams: Int, listRandomNumber: ArrayList<Int>) {
     val user: User = userObj
     var score: Int = scoreParams
     val optionFinger: String = optionFinger
     var randomFinger: String = ""
     var state: String = ""
+    var level: String = levelParams
     val listFinger = arrayOf<String>("ROCK", "SCISSORS", "PAPER")
+    var listLevel = arrayOf<String>("easy", "medium", "hard")
+    var numberOfRounds= arrayOf(10, 25, 50)
+    var countOfRounds: Int = countParams
+    val time = arrayOf(-1, 10, 5)
+    val listRandomNumber: ArrayList<Int> = listRandomNumber
+
 
     init {
         computerChoosing()
@@ -17,8 +24,8 @@ class Game(optionFinger: String, scoreParams: Int, userObj: User) {
     }
 
     fun computerChoosing(){
-        var randomNumber: Int =  Random.nextInt(0, 2)
-        this.randomFinger = this.listFinger[randomNumber]
+        var randomOption: Int =  this.listRandomNumber[this.countOfRounds-1]
+        this.randomFinger = this.listFinger[randomOption]
     }
     fun matching(){
         if (this.optionFinger.equals(this.randomFinger)){
@@ -45,11 +52,29 @@ class Game(optionFinger: String, scoreParams: Int, userObj: User) {
         }
     }
     fun updateBestScoreUser(){
-        if (this.score > user.getBestScore()){
-            user.setBestScore(this.score)
+        for (i in 0..2){
+            if (this.level.equals(listLevel[i]) && this.score > user.getBestScore(i) && this.countOfRounds == this.numberOfRounds[i]){
+                user.setBestScore(i, this.score)
+                break
+            }
+        }
+    }
+    fun getTimeOfRound(): Int{
+        return when(this.level){
+            listLevel[0] -> -1
+            listLevel[1] -> 10
+            listLevel[2] -> 5
+            else -> -2
         }
     }
 
+    fun isContinue(): Boolean{
+        return when(this.level){
+            listLevel[0] -> this.countOfRounds < this.numberOfRounds[0]
+            listLevel[1] -> this.countOfRounds < this.numberOfRounds[1]
+            listLevel[2] -> this.countOfRounds < this.numberOfRounds[2]
+            else -> false
+        }
 
-
+    }
 }
